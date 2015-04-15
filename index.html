@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <title>Angular Material - Starter App</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="assets/app.css"/>
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <script src="http://getbootstrap.com/dist/js/bootstrap.js">
+      <link href="css/custom-bootstrap.css" rel="stylesheet">
+      <script src="js/modernizr.js"></script>
+  </head>
+
+  <body ng-app="starterApp" layout="column" ng-controller="UserController as userList">
+    <div class="container">
+      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle" data-toggle="collapse"
+		  data-target="#bs-example-navbar-collapse-1" style="margin-top:5%;">
+
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+
+	  </button>
+	  <form class="navbar-form navbar-left" role="form"
+		style="margin-top: 3%;margin-right:3%;">
+	    <img src="assets/images/header-logo04.png">
+	  </form>
+	</div>
+
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	  <ul class="nav navbar-nav navbar-right" style="margin-top: 2%;">
+	    <li><a href="#" style="font-family:Lucida Grande;font-size: large;font-weight:900;">
+	      About</a></li>
+	    <li><a href="#" style="font-family:Lucida Grande;font-size: large;font-weight:900;">Services</a></li>
+	    <li><a href="#" style="font-family:Lucida Grande;font-size: large;font-weight:900;">Contact</a></li>
+	    <li>
+	      <form class="navbar-form navbar-right" role="form"
+		    style="margin-top: 3%;margin-right:3%;">
+		<div class="form-group" style="display: inline-flex;">
+		  <input type="search" placeholder="search" class="form-control">
+		  <button type="submit" class="btn btn-primary" style="margin-left:4%;">Search
+		  </button>
+		</div>
+	      </form>
+	      <li>
+	  </ul>
+	</div>
+      </nav>
+    </div>
+
+    <div flex layout="row" style="margin-top: 100px;">
+      <div class="sidebar-overlay"></div>
+      <aside id="sidebar container" class="sidebar sidebar-default open" role="navigation">
+	<div class="sidebar-header header-cover" style="background-image: url(assets/images/profile-bg.jpg);">
+	  <div class="top-bar" style="margin-top: 1%;"></div>
+	  <div class="sidebar-image">
+	    <img src="assets/images/profile.png">
+	  </div>
+	  <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+	    deepak.d@amazatic.com
+	    <b class="caret"></b>
+	  </a>
+	</div>
+
+	<ul class="nav sidebar-nav">
+	  <li class="dropdown">
+	    <ul id="settings-dropdown" class="dropdown-menu">
+	      <li>
+		<a href="#" tabindex="-1">
+		  Profile
+		</a>
+	      </li>
+	      <li>
+		<a href="#" tabindex="-1">
+		  Settings
+		</a>
+	      </li>
+	      <li>
+		<a href="#" tabindex="-1">
+		  Privacy
+		</a>
+	      </li>
+
+	      <li>
+		<a href="#" tabindex="-1">
+		  Help
+		</a>
+	      </li>
+	      <li>
+		<a href="#" tabindex="-1">
+		  Exit
+		</a>
+	      </li>
+	    </ul>
+	  </li>
+	</ul>
+	<ul class="nav sidebar-nav" style="background-color: ghostwhite;">
+	  <md-sidenav class="md-sidenav-left md-whiteframe-z2"
+		      md-is-locked-open="$mdMedia('gt-sm')"
+		      md-component-id="left">
+	    <md-list>
+	      <md-item ng-repeat="user in  userList.users">
+		<md-button ng-click="userList.selectUser(user)" ng-class="{'selected' : user === userList.selected }">
+		  <md-icon md-svg-icon="{{user.avatar}}" class="avatar"></md-icon>
+		  {{user.firstName}}
+		</md-button>
+	      </md-item>
+	    </md-list>
+	  </md-sidenav>
+	</ul>
+      </aside>
+
+      <md-content flex id="content">
+	<md-icon md-svg-icon="{{userList.selected.avatar}}" class="avatar"></md-icon>
+	<h2>{{userList.selected.firstName}} {{userList.selected.lastName}}</h2>
+	<p>{{userList.selected.content}}</p>
+
+	<div class="table-responsive">
+	  <table class="table table-hover">
+	    <th><h3> Personnel Details</h3> </th>
+	    <tr>
+	      <td>
+		First Name: {{userList.selected.firstName}}
+	      </td>
+	      <td>
+		Last Name : {{userList.selected.lastName}}
+	      </td>
+	    </tr>
+
+	    <tr>
+	      <td>
+		Email: {{userList.selected.email}}
+	      </td>
+	      <td>
+		Telephone : {{userList.selected.telephone}}
+	      </td>
+	    </tr>
+
+	    <tr>
+	      <td>
+		Alternate Contact : {{userList.selected.alternateContact}}
+	      </td>
+	      <td>
+		Address1 : {{userList.selected.address1}}
+	      </td>
+	    </tr>
+
+	    <tr>
+	      <td>
+		Address2 : {{userList.selected.address2}}
+	      </td>
+	      <td>
+		City : {{userList.selected.city}}
+	      </td>
+	    </tr>
+
+	    <tr>
+	      <td>
+		State : {{userList.selected.state}}
+	      </td>
+	      <td>
+		ZipCode : {{userList.selected.zipCode}}
+	      </td>
+	    </tr>
+
+	    <tr>
+	      <td>
+		Relation : {{userList.selected.relation}}
+	      </td>
+	    </tr>
+	  </table>
+	</div>
+
+	<md-button class="share" md-no-ink ng-click="userList.share($event)" aria-label="Share">
+	  <md-icon md-svg-icon="share"></md-icon>
+	</md-button>
+      </md-content>
+    </div>
+
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.js"></script>
+    <script src="./bower_components/angular-aria/angular-aria.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
+    <script src="js/index.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="./src/users/Users.js"></script>
+    <script src="./src/users/UserController.js"></script>
+    <script src="./src/users/UserService.js"></script>
+    <script type="text/javascript">
+
+      angular.module('starterApp', ['ngMaterial', 'users']).config(function($mdThemingProvider, $mdIconProvider){
+	$mdIconProvider
+	  .defaultIconSet("./assets/svg/avatars.svg", 128)
+	  .icon("menu"       , "./assets/svg/menu.svg"        , 24)
+	  .icon("share"      , "./assets/svg/share.svg"       , 24)
+	  .icon("google_plus", "./assets/svg/google_plus.svg" , 512)
+	  .icon("hangouts"   , "./assets/svg/hangouts.svg"    , 512)
+	  .icon("twitter"    , "./assets/svg/twitter.svg"     , 512)
+	  .icon("phone"      , "./assets/svg/phone.svg"       , 512);
+
+	$mdThemingProvider.theme('blue').primaryPalette('brown').accentPalette('red');
+
+      });
+    </script>
+  </body>
+</html>

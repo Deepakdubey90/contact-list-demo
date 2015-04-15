@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" >
+  <head>
+    <title>Angular Material - Starter App</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+    <link rel="stylesheet" href="./bower_components/angular-material/angular-material.css"/>
+    <link rel="stylesheet" href="assets/app.css"/>
+
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link href="http://getbootstrap.com/dist/css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <script src="http://getbootstrap.com/dist/js/bootstrap.js">
+      <link href="css/custom-bootstrap.css" rel="stylesheet">
+      <script src="js/modernizr.js"></script>
+  </head>
+
+  <body ng-app="starterApp" layout="column" ng-controller="UserController as ul">
+
+    <!--
+    <header>
+      <md-toolbar layout="row" style="background-color: rgb(63, 141, 181);">
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation" id="slide-nav"
+	     style=" margin-bottom: 0px;" style="background-color:#006471;">
+
+	  <form class="navbar-form navbar-left" role="form" style="margin-top: 3%;margin-right:3%;">
+	    <img src="assets/images/header-logo04.png" class="visible-xs" >
+	  </form>
+
+	  <div class="container">
+	    <!--div class="sidebar-image;navbar-form navbar-right;" style="margin-left:7%;margin-bottom:0px;
+	    width:90px;margin-top: 7%;margin-bottom: 6%;
+	    width:90px;">
+	    <img src="assets/images/header-logo04.png">
+	  </div>
+	  <ul class="nav nav-pills">
+	    <li role="presentation" class="active"><a href="#">Home</a></li>
+	    <li role="presentation"><a href="#">Profile</a></li>
+	    <li role="presentation"><a href="#">Messages</a></li>
+	  </ul>
+	</div>
+	<form class="navbar-form navbar-right" role="form" style="margin-top: 3%;margin-right:3%;">
+	  <div class="form-group">
+	    <input type="search" placeholder="search" class="form-control">
+	  </div>
+	  <button type="submit" class="btn btn-primary">Search</button>
+	</form>
+	</div>
+      </md-toolbar>
+    </header> -->
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+
+	<div class="navbar-header">
+	  <button type="button" class="navbar-toggle" data-toggle="collapse"
+		  data-target="#bs-example-navbar-collapse-1">
+
+	    <span class="sr-only">Toggle navigation</span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+	    <span class="icon-bar"></span>
+
+	  </button>
+	  <form class="navbar-form navbar-left" role="form"
+		style="margin-top: 3%;margin-right:3%;">
+	    <img src="assets/images/header-logo04.png">
+	  </form>
+	</div>
+
+	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	  <ul class="nav navbar-nav navbar-right">
+	    <li><a href="#">About</a></li>
+	    <li><a href="#">Services</a></li>
+	    <li><a href="#">Contact</a></li>
+	    <li>
+	      <form class="navbar-form navbar-right" role="form"
+		    style="margin-top: 3%;margin-right:3%;">
+		<div class="form-group" style="display: inline-flex;">
+		  <input type="search" placeholder="search" class="form-control">
+		  <button type="submit" class="btn btn-primary" style="margin-left:4%;">Search
+		  </button>
+		</div>
+	      </form>
+	      <li>
+	  </ul>
+	</div>
+      </div>
+    </nav>
+
+    <div flex layout="row" style="margin-top: 1.5%;">
+      <div class="sidebar-overlay"></div>
+      <aside id="sidebar" class="sidebar sidebar-default open" role="navigation">
+	<div class="sidebar-header header-cover" style="background-image: url(assets/images/profile-bg.jpg);">
+	  <div class="top-bar" style="margin-top: 1%;"></div>
+	  <div class="sidebar-image">
+	    <img src="assets/images/profile.png">
+	  </div>
+	  <a data-toggle="dropdown" class="sidebar-brand" href="#settings-dropdown">
+	    john.doe@gmail.com
+	    <b class="caret"></b>
+	  </a>
+	</div>
+
+	<ul class="nav sidebar-nav">
+	  <li class="dropdown">
+	    <ul id="settings-dropdown" class="dropdown-menu">
+	      <li>
+		<a href="#" tabindex="-1">
+		  Profile
+		</a>
+	      </li>
+	      <li>
+		<a href="#" tabindex="-1">
+		  Settings
+		</a>
+	      </li>
+	      <li>
+		<a href="#" tabindex="-1">
+		  Privacy
+		</a>
+	      </li>
+
+	      <li>
+		<a href="#" tabindex="-1">
+		  Help
+		</a>
+	      </li>
+	      <li>
+		<a href="#" tabindex="-1">
+		  Exit
+		</a>
+	      </li>
+	    </ul>
+	  </li>
+	</ul>
+	<ul class="nav sidebar-nav" style="background-color: ghostwhite;">
+	  <md-sidenav class="md-sidenav-left md-whiteframe-z2"
+		      md-is-locked-open="$mdMedia('gt-sm')"
+		      md-component-id="left">
+	    <md-list>
+	      <md-item ng-repeat="it in ul.users">
+		<md-button ng-click="ul.selectUser(it)" ng-class="{'selected' : it === ul.selected }">
+		  <md-icon md-svg-icon="{{it.avatar}}" class="avatar"></md-icon>
+		  {{it.name}}
+		</md-button>
+	      </md-item>
+	    </md-list>
+	  </md-sidenav>
+	</ul>
+      </aside>
+
+      <md-content flex id="content">
+	<md-icon md-svg-icon="{{ul.selected.avatar}}" class="avatar"></md-icon>
+	<h2>{{ul.selected.name}}</h2>
+	<p>{{ul.selected.content}}</p>
+
+	<md-button class="share" md-no-ink ng-click="ul.share($event)" aria-label="Share">
+	  <md-icon md-svg-icon="share"></md-icon>
+	</md-button>
+      </md-content>
+    </div>
+
+    <script src="./bower_components/angular/angular.js"></script>
+    <script src="./bower_components/angular-animate/angular-animate.js"></script>
+    <script src="./bower_components/angular-aria/angular-aria.js"></script>
+    <script type="text/javascript" src="./bower_components/angular-material/angular-material.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js'></script>
+    <script src="js/index.js"></script>
+    <script src="js/sidebar.js"></script>
+    <script src="./src/users/Users.js"></script>
+    <script src="./src/users/UserController.js"></script>
+    <script src="./src/users/UserService.js"></script>
+    <script type="text/javascript">
+
+      angular.module('starterApp', ['ngMaterial', 'users']).config(function($mdThemingProvider, $mdIconProvider){
+	$mdIconProvider
+      .defaultIconSet("./assets/svg/avatars.svg", 128)
+      .icon("menu"       , "./assets/svg/menu.svg"        , 24)
+      .icon("share"      , "./assets/svg/share.svg"       , 24)
+      .icon("google_plus", "./assets/svg/google_plus.svg" , 512)
+      .icon("hangouts"   , "./assets/svg/hangouts.svg"    , 512)
+      .icon("twitter"    , "./assets/svg/twitter.svg"     , 512)
+      .icon("phone"      , "./assets/svg/phone.svg"       , 512);
+
+	$mdThemingProvider.theme('blue').primaryPalette('brown').accentPalette('red');
+
+      });
+    </script>
+  </body>
+</html>
